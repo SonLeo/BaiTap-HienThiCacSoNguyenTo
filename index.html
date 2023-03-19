@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Số nguyên tố</title>
+</head>
+<body>
+    <script>
+        let num = parseInt(prompt("Số lượng số nguyên tố muốn hiển thị: "));
+        let count = 1;
+        let primeNumber = 2;
+        let isPrimeNumber = true;
+        let result = num + " số nguyên tố đầu tiên là: ";
+        
+        while (isNaN(num) || num < 0) {
+            alert("Dữ liệu nhập vào không đúng, hãy nhập lại!");
+            num = parseInt(prompt("Số lượng số nguyên tố muốn hiển thị: "));
+        }
+
+        if (num == 1) {
+            result += primeNumber;
+            count++;
+        }
+
+        while(count < num) {
+            primeNumber++;
+
+            if (primeNumber == 3) {
+                result += "2; " + primeNumber;
+                primeNumber++;
+                count++;
+                continue;
+            } else if (primeNumber % 2 == 0) {
+                isPrimeNumber = false;
+            } else {
+                for (let i = 3; i <= Math.sqrt(primeNumber); i+=2) {
+                    if (primeNumber % i == 0) {
+                        isPrimeNumber = false;
+                        break;
+                    }
+                }
+            }
+            if (isPrimeNumber) {
+                result += "; " + primeNumber;
+                count++;
+            }
+            isPrimeNumber = true;
+        }
+
+        result += ".";
+        document.write(result);
+    </script>
+</body>
+</html>
